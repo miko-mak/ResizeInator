@@ -10,8 +10,8 @@ public class PlayerQuitListener implements Listener {
 
     private final ConfigManager configuration;
 
-    public PlayerQuitListener(final ConfigManager config) {
-        this.configuration = config;
+    public PlayerQuitListener(final ConfigManager configuration) {
+        this.configuration = configuration;
     }
 
     @EventHandler

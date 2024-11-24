@@ -10,8 +10,8 @@ public class PlayerJoinListener implements Listener {
 
     private final ConfigManager configuration;
 
-    public PlayerJoinListener(final ConfigManager config) {
-        this.configuration = config;
+    public PlayerJoinListener(final ConfigManager configuration) {
+        this.configuration = configuration;
     }
 
     @EventHandler
