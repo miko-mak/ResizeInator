@@ -1,0 +1,17 @@
+resizeCommandPermission: "resizeinator.resize"
+resetSizeOnQuit: true
+
+maximumSize: 5.0
+minimumSize: 0.1
+
+sizeChangedSound: "ENTITY_BREEZE_CHARGE 10.0 0.75"
+resizedMessage: "<gray>Your size has been changed."
+resizedPlayerMessage: "<yellow>{PLAYER} <gray>has been resized."
+
+noPermissionMessage: "<red>You are not permitted to use this command."
+accessDeniedMessage: "<red>Only players can use this command."
+invalidUsageMessage: "<gray>Correct usage: <yellow>/resize (nickname) (number)"
+playerOfflineMessage: "<red>The provided user is offline!"
+sameSizeMessage: "<red>You cannot set the same size as the current one."
+
+outOfRangeMessage: "<red>You cannot set sizes out of range."

@@ -1,0 +1,7 @@
+name: ResizeInator
+version: '${version}'
+main: pl.mikomak.resizeinator.ResizeInator
+api-version: '1.21'
+commands:
+  resize:
+    description: Resize yourself or an another player.
