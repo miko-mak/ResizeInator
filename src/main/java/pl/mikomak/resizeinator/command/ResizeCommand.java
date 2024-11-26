@@ -13,6 +13,7 @@ import pl.mikomak.resizeinator.config.ConfigManager;
 
 public class ResizeCommand implements CommandExecutor {
 
+    private final MiniMessage MINIMESSAGE = MiniMessage.miniMessage();
     private final ConfigManager configuration;
 
     public ResizeCommand(final ConfigManager configuration) {
@@ -33,13 +34,13 @@ public class ResizeCommand implements CommandExecutor {
 
         if (!sender.hasPermission(resizeCommandPermission)) {
             final String noPermission = configuration.getNoPermissionMessage();
-            sender.sendMessage(MiniMessage.miniMessage().deserialize(noPermission));
+            sender.sendMessage(MINIMESSAGE.deserialize(noPermission));
             return false;
         }
 
         if (args.length != 2) {
             final String invalidUsage = configuration.getInvalidUsageMessage();
-            sender.sendMessage(MiniMessage.miniMessage().deserialize(invalidUsage));
+            sender.sendMessage(MINIMESSAGE.deserialize(invalidUsage));
             return false;
         }
 
@@ -50,7 +51,7 @@ public class ResizeCommand implements CommandExecutor {
 
         } catch (Exception e) {
             final String invalidUsage = configuration.getInvalidUsageMessage();
-            sender.sendMessage(MiniMessage.miniMessage().deserialize(invalidUsage));
+            sender.sendMessage(MINIMESSAGE.deserialize(invalidUsage));
             return false;
         }
 
@@ -58,7 +59,7 @@ public class ResizeCommand implements CommandExecutor {
 
         if (targetPlayer == null) {
             final String targetOffline = configuration.getPlayerOfflineMessage();
-            sender.sendMessage(MiniMessage.miniMessage().deserialize(targetOffline));
+            sender.sendMessage(MINIMESSAGE.deserialize(targetOffline));
             return false;
         }
 
@@ -67,13 +68,13 @@ public class ResizeCommand implements CommandExecutor {
 
         if (targetSize > maxSize || targetSize < minSize) {
             final String outOfRange = configuration.getOutOfRangeMessage();
-            sender.sendMessage(MiniMessage.miniMessage().deserialize(outOfRange));
+            sender.sendMessage(MINIMESSAGE.deserialize(outOfRange));
             return false;
         }
 
         if (targetPlayer.getAttribute(Attribute.GENERIC_SCALE).getBaseValue() == targetSize) {
             final String sameSizeMessage = configuration.getSameSizeMessage();
-            sender.sendMessage(MiniMessage.miniMessage().deserialize(sameSizeMessage));
+            sender.sendMessage(MINIMESSAGE.deserialize(sameSizeMessage));
             return false;
         }
 
@@ -83,12 +84,12 @@ public class ResizeCommand implements CommandExecutor {
             final String resizedPlayer = configuration.getResizedPlayerMessage().replace("{PLAYER}", playerName);
             final String resized = configuration.getResizedMessage();
 
-            sender.sendMessage(MiniMessage.miniMessage().deserialize(resizedPlayer));
-            targetPlayer.sendMessage(MiniMessage.miniMessage().deserialize(resized));
+            sender.sendMessage(MINIMESSAGE.deserialize(resizedPlayer));
+            targetPlayer.sendMessage(MINIMESSAGE.deserialize(resized));
 
         } else {
             final String resized = configuration.getResizedMessage();
-            sender.sendMessage(MiniMessage.miniMessage().deserialize(resized));
+            sender.sendMessage(MINIMESSAGE.deserialize(resized));
         }
 
         final String sound = configuration.getSizeChangedSound();
