@@ -9,14 +9,14 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
-import pl.mikomak.resizeinator.config.ConfigManager;
+import pl.mikomak.resizeinator.config.PluginConfiguration;
 
 public class ResizeCommand implements CommandExecutor {
 
     private final MiniMessage MINIMESSAGE = MiniMessage.miniMessage();
-    private final ConfigManager configuration;
+    private final PluginConfiguration configuration;
 
-    public ResizeCommand(final ConfigManager configuration) {
+    public ResizeCommand(final PluginConfiguration configuration) {
         this.configuration = configuration;
     }
 
@@ -44,6 +44,14 @@ public class ResizeCommand implements CommandExecutor {
             return false;
         }
 
+        final Player targetPlayer = Bukkit.getPlayer(args[0]);
+
+        if (targetPlayer == null) {
+            final String targetOffline = configuration.getPlayerOfflineMessage();
+            sender.sendMessage(MINIMESSAGE.deserialize(targetOffline));
+            return false;
+        }
+
         double targetSize;
 
         try {
@@ -52,14 +60,6 @@ public class ResizeCommand implements CommandExecutor {
         } catch (Exception e) {
             final String invalidUsage = configuration.getInvalidUsageMessage();
             sender.sendMessage(MINIMESSAGE.deserialize(invalidUsage));
-            return false;
-        }
-
-        final Player targetPlayer = Bukkit.getPlayer(args[0]);
-
-        if (targetPlayer == null) {
-            final String targetOffline = configuration.getPlayerOfflineMessage();
-            sender.sendMessage(MINIMESSAGE.deserialize(targetOffline));
             return false;
         }
 
