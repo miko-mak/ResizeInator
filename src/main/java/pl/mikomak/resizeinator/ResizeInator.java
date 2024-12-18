@@ -16,8 +16,10 @@ public final class ResizeInator extends JavaPlugin {
         final PluginConfiguration configuration = new PluginConfiguration(this.getConfig());
         final PluginManager pluginManager = getServer().getPluginManager();
 
+        // registering the main command and passing the PluginConfiguration instance to the constructor
         this.getCommand("resize").setExecutor(new ResizeCommand(configuration));
 
+        // registering listeners
         pluginManager.registerEvents(new PlayerJoinListener(configuration), this);
         pluginManager.registerEvents(new PlayerQuitListener(configuration), this);
     }

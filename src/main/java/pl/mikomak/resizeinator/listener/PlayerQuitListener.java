@@ -10,12 +10,14 @@ public class PlayerQuitListener implements Listener {
 
     private final PluginConfiguration configuration;
 
+    // dependency injection
     public PlayerQuitListener(final PluginConfiguration configuration) {
         this.configuration = configuration;
     }
 
     @EventHandler
     public void onQuit(final PlayerQuitEvent event) {
+        // checking if player's size should be reset after quitting
         final boolean resetSizeOnQuit = configuration.shouldResetSize();
 
         if (resetSizeOnQuit) {

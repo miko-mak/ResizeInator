@@ -6,6 +6,7 @@ public class PluginConfiguration {
 
     private final FileConfiguration configuration;
 
+    // dependency injection
     public PluginConfiguration(final FileConfiguration configuration) {
         this.configuration = configuration;
     }
